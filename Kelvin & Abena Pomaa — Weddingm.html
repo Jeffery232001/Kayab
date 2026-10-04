@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Kelvin &amp; Abena Pomaa — Wedding</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Colour tokens: ivory, champagne, soft gold */
+      :root {
+        --bg: #fbf7ef;
+        --ink: #3a2f26;
+        --gold: #b08d4a;
+        --gold2: #e6d3a3;
+        --card: #fffdf8;
+        --dark: #1d1611;
+        --h: "Cormorant Garamond", Georgia, serif;
+        --b: "Montserrat", system-ui, sans-serif;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #17120d;
+          --ink: #f1e7d3;
+          --card: #231b14;
+          --gold: #d2ae68;
+        }
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font: 300 15px/1.7 var(--b);
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--h);
+        font-weight: 500;
+      }
+      section {
+        padding: 80px 20px;
+        max-width: 980px;
+        margin: auto;
+        text-align: center;
+      }
+      h2 {
+        font-size: clamp(2rem, 7vw, 3rem);
+        color: var(--gold);
+      }
+      .eyebrow {
+        letter-spacing: 0.35em;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .rule {
+        width: 80px;
+        height: 1px;
+        background: var(--gold);
+        margin: 16px auto 34px;
+        position: relative;
+      }
+      .rule::after {
+        content: "◆";
+        position: absolute;
+        left: 50%;
+        top: -9px;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: var(--gold);
+        background: var(--bg);
+        padding: 0 8px;
+      }
+      /* ENTER SCREEN (hero) */
+      #enter {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        color: #fff;
+        background: radial-gradient(
+          circle at 50% 35%,
+          #4a3720,
+          var(--dark) 75%
+        );
+        transition:
+          opacity 1s,
+          visibility 1s;
+      }
+      #enter.gone {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #enter h1 {
+        font-size: clamp(2.6rem, 13vw, 6rem);
+        line-height: 1.05;
+        margin: 22px 0;
+        animation: rise 2s 0.2s both;
+      }
+      #enter h1 i {
+        display: block;
+        color: var(--gold2);
+        font-size: 0.45em;
+      }
+      #enter p {
+        max-width: 420px;
+        opacity: 0.85;
+        animation: rise 2s 0.8s both;
+      }
+      .cta {
+        margin-top: 30px;
+        padding: 14px 34px;
+        border: 1px solid var(--gold2);
+        background: transparent;
+        color: var(--gold2);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font: 400 0.75rem var(--b);
+        cursor: pointer;
+        animation:
+          rise 1.6s 1.4s both,
+          glow 2.5s 3s infinite;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .cta:hover {
+        background: var(--gold2);
+        color: var(--dark);
+      }
+      .cta.solid {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #fff;
+        animation: none;
+      }
+      .cta.small {
+        margin: 8px 4px 0;
+        padding: 10px 18px;
+        font-size: 0.65rem;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes glow {
+        50% {
+          box-shadow: 0 0 22px rgba(230, 211, 163, 0.5);
+        }
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(300deg);
+        }
+      }
+      .pt {
+        position: absolute;
+        top: -20px;
+        color: var(--gold2);
+        pointer-events: none;
+        animation: fall linear infinite;
+        opacity: 0.6;
+      }
+      /* nav + music */
+      nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 20;
+        padding: calc(10px + env(safe-area-inset-top, 0px)) 14px;
+      }
+      #mus {
+        display: none;
+        background: var(--card);
+        border: 1px solid var(--gold2);
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+      }
+      /* reveal on scroll */
+      .rv {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 1s;
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      /* photo placeholders (swap in real photos via PHOTOS below) */
+      .ph {
+        background:
+          linear-gradient(135deg, var(--gold2), transparent), var(--card);
+        border: 1px dashed var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.5s;
+      }
+      .ph:hover {
+        transform: scale(1.03);
+      }
+      .ph img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* countdown */
+      .cd {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cd div {
+        border: 1px solid var(--gold2);
+        background: var(--card);
+        padding: 16px 8px;
+        min-width: 74px;
+      }
+      .cd b {
+        display: block;
+        font: 500 2.2rem var(--h);
+        color: var(--gold);
+      }
+      .cd span {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+      }
+      /* story timeline */
+      .st {
+        max-width: 620px;
+        margin: auto;
+        text-align: left;
+        border-left: 1px solid var(--gold);
+        padding-left: 26px;
+      }
+      .st div {
+        margin-bottom: 34px;
+        position: relative;
+      }
+      .st div::before {
+        content: "";
+        position: absolute;
+        left: -32px;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+      .st h3 {
+        color: var(--gold);
+        font-size: 1.3rem;
+      }
+      /* three-day cards */
+      .days {
+        display: grid;
+        gap: 22px;
+        text-align: left;
+      }
+      .day {
+        background: var(--card);
+        border: 1px solid var(--gold2);
+        padding: 26px;
+        position: relative;
+        overflow: hidden;
+      }
+      .day::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--c);
+      }
+      .day.main {
+        border: 2px solid var(--gold);
+        box-shadow: 0 14px 40px rgba(176, 141, 74, 0.25);
+      }
+      .day h3 {
+        font-size: 1.8rem;
+      }
+      .day .sb {
+        opacity: 0.7;
+        margin-bottom: 14px;
+      }
+      .day dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4px 14px;
+        margin: 14px 0;
+      }
+      .day dt {
+        font-size: 0.62rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        padding-top: 4px;
+      }
+      .day .ph {
+        height: 150px;
+        margin: 14px 0;
+      }
+      /* schedule */
+      .sch {
+        max-width: 560px;
+        margin: auto;
+        text-align: left;
+      }
+      .sch div {
+        display: flex;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--gold2);
+      }
+      .sch b {
+        min-width: 80px;
+        color: var(--gold);
+        font-weight: 500;
+      }
+      /* grids */
+      .g {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      .g .ph {
+        aspect-ratio: 3/4;
+      }
+      .g .ph.w {
+        grid-column: span 2;
+        aspect-ratio: auto;
+      }
+      .vid {
+        aspect-ratio: 16/9;
+        font-size: 3rem;
+        position: relative;
+      }
+      .fam {
+        display: grid;
+        gap: 18px;
+      }
+      .fam > div {
+        background: var(--card);
+        border: 1px solid var(--gold2);
+        padding: 24px;
+      }
+      .card {
+        text-align: center;
+        font-size: 0.8rem;
+      }
+      .card .ph {
+        aspect-ratio: 1;
+        border-radius: 50%;
+        margin-bottom: 8px;
+      }
+      .card b {
+        display: block;
+        color: var(--gold);
+        font: 500 1rem var(--h);
+      }
+      /* form */
+      form {
+        max-width: 440px;
+        margin: auto;
+        display: grid;
+        gap: 14px;
+        text-align: left;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid var(--gold2);
+        background: var(--card);
+        color: var(--ink);
+        font: 300 1rem var(--b);
+      }
+      #thx {
+        display: none;
+      }
+      /* lightbox */
+      #lb {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 60;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #lb img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      footer {
+        padding: 50px 20px;
+        text-align: center;
+        opacity: 0.7;
+        font-size: 0.8rem;
+      }
+      /* ===== Ring scene animation (about 4s, then names fade in) ===== */
+      html {
+        scroll-padding-top: 64px;
+      }
+      .scene {
+        width: min(86vw, 380px, 44vh);
+        height: auto;
+        display: block;
+        margin: 0 auto 6px;
+        filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.5));
+      }
+      .aura {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: aura 4s ease-in-out infinite;
+      }
+      @keyframes aura {
+        50% {
+          transform: scale(1.08);
+          opacity: 0.75;
+        }
+      }
+      .bh {
+        animation: rise 1.2s 0.1s both;
+      }
+      .mh {
+        animation: hand 3.6s 0.5s both;
+      }
+      .rg {
+        animation: ring 3.6s 0.5s both;
+      }
+      /* Hand + ring glide in, hover over her finger, slide down; the hand then leaves and the ring stays */
+      @keyframes hand {
+        0% {
+          transform: translate(-120px, -120px);
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        40%,
+        58% {
+          transform: translate(0, -80px);
+        }
+        76%,
+        84% {
+          transform: translate(0, -10px);
+        }
+        100% {
+          transform: translate(0, -170px);
+          opacity: 0;
+        }
+      }
+      @keyframes ring {
+        0% {
+          transform: translate(-120px, -120px);
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        40%,
+        58% {
+          transform: translate(0, -80px);
+        }
+        76% {
+          transform: translate(0, -10px);
+        }
+        88%,
+        100% {
+          transform: translate(0, 25px);
+        }
+      }
+      .gl2 {
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: glint 1.2s 3.6s ease-out both;
+      }
+      @keyframes glint {
+        0% {
+          opacity: 0;
+          transform: scale(0.2);
+        }
+        40% {
+          opacity: 1;
+          transform: scale(5);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(9);
+        }
+      }
+      /* Sparkle burst around the ring */
+      #spk text {
+        fill: #f3dd9a;
+        font-size: 14px;
+        text-anchor: middle;
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: spark 1.8s 3.6s ease-out both;
+      }
+      @keyframes spark {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0) scale(0.2);
+        }
+        30% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--dx), var(--dy)) scale(1.4);
+        }
+      }
+      #enter .eyebrow {
+        animation: rise 1.4s 3s both;
+      }
+      #enter h1 {
+        font-size: clamp(2.2rem, 10vw, 4rem);
+        margin: 10px 0 14px;
+        animation: rise 1.6s 3.2s both;
+      }
+      #enter p {
+        animation: rise 1.4s 3.6s both;
+      }
+      #enter .cta {
+        animation:
+          rise 1.2s 3.9s both,
+          glow 2.5s 5.2s infinite;
+      }
+      /* ===== Professional polish: nav, progress bar, cards ===== */
+      nav {
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        background: color-mix(in srgb, var(--bg) 90%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--gold2);
+      }
+      nav .mono {
+        font: 600 1.15rem var(--h);
+        color: var(--gold);
+        text-decoration: none;
+        letter-spacing: 0.14em;
+      }
+      .lk {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+      .lk a {
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--ink);
+        opacity: 0.8;
+      }
+      .lk a:hover {
+        color: var(--gold);
+        opacity: 1;
+      }
+      .lk a.rs {
+        border: 1px solid var(--gold);
+        padding: 7px 14px;
+        color: var(--gold);
+      }
+      #bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--gold);
+        z-index: 30;
+      }
+      section {
+        padding: 96px 22px;
+      }
+      .day {
+        transition: 0.5s;
+      }
+      .day:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(176, 141, 74, 0.22);
+      }
+      @media (max-width: 600px) {
+        .lk a:not(.rs) {
+          display: none;
+        }
+      }
+      @media (min-width: 760px) {
+        .days {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .fam {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Opening screen: tap "Enter Invitation" to reveal the site -->
+    <div id="enter">
+      <!-- Animated scene: the groom's hand slides the ring onto his bride's finger -->
+      <svg
+        class="scene"
+        viewBox="0 0 400 360"
+        role="img"
+        aria-label="A groom places a ring on his bride's finger"
+      >
+        <defs>
+          <radialGradient id="gl">
+            <stop offset="0" stop-color="#e6d3a3" stop-opacity=".5" />
+            <stop offset="1" stop-color="#e6d3a3" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="sk1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#c08a60" />
+            <stop offset="1" stop-color="#8f5d3d" />
+          </linearGradient>
+          <linearGradient id="sk2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9a6440" />
+            <stop offset="1" stop-color="#6f4429" />
+          </linearGradient>
+        </defs>
+        <circle class="aura" cx="200" cy="190" r="175" fill="url(#gl)" />
+        <!-- Bride's hand (ring finger is the tall one at x=272) -->
+        <g class="bh" fill="url(#sk1)">
+          <rect x="198" y="250" width="132" height="160" rx="46" />
+          <rect x="204" y="172" width="24" height="100" rx="12" />
+          <rect x="232" y="150" width="24" height="122" rx="12" />
+          <rect x="260" y="170" width="24" height="130" rx="12" />
+          <rect x="288" y="192" width="22" height="90" rx="11" />
+          <rect
+            x="168"
+            y="248"
+            width="24"
+            height="84"
+            rx="12"
+            transform="rotate(-30 180 290)"
+          />
+          <rect
+            x="264"
+            y="174"
+            width="16"
+            height="16"
+            rx="8"
+            fill="#e6d3a3"
+            opacity=".55"
+          />
+        </g>
+        <!-- Groom's hand: dark suit sleeve, white cuff, two fingers pinching the ring -->
+        <g class="mh">
+          <rect
+            x="222"
+            y="-150"
+            width="100"
+            height="92"
+            rx="10"
+            fill="#241b14"
+          />
+          <rect x="226" y="-60" width="92" height="22" rx="5" fill="#f6efe0" />
+          <circle cx="300" cy="-49" r="4" fill="#e6d3a3" />
+          <g fill="url(#sk2)">
+            <rect x="236" y="-40" width="72" height="170" rx="34" />
+            <rect x="241" y="104" width="14" height="90" rx="7" />
+            <rect x="289" y="104" width="14" height="90" rx="7" />
+          </g>
+        </g>
+        <!-- The ring: gold band + diamond -->
+        <g class="rg">
+          <ellipse
+            cx="272"
+            cy="200"
+            rx="17"
+            ry="9"
+            fill="none"
+            stroke="#e6d3a3"
+            stroke-width="5"
+          />
+          <polygon
+            points="272,180 281,190 272,196 263,190"
+            fill="#fff"
+            stroke="#e6d3a3"
+            stroke-width="1.5"
+          />
+        </g>
+        <circle class="gl2" cx="272" cy="225" r="5" fill="#fff" />
+        <g id="spk"></g>
+      </svg>
+      <div class="eyebrow">You are invited</div>
+      <h1>Kelvin<i>&amp;</i>Abena Pomaa</h1>
+      <p>
+        Together with their families, they invite you to celebrate their love
+        and union.
+      </p>
+      <button class="cta" id="go">Enter Invitation</button>
+    </div>
+    <!-- Top menu with scroll progress bar -->
+    <div id="bar"></div>
+    <nav>
+      <a class="mono" href="#">K &amp; A</a>
+      <div class="lk">
+        <a href="#s-story">Story</a><a href="#s-days">The Days</a
+        ><a href="#s-sch">Schedule</a><a href="#s-gal">Gallery</a
+        ><a class="rs" href="#s-rsvp">RSVP</a>
+        <button id="mus" title="Music">🎵</button>
+      </div>
+    </nav>
+
+    <section class="rv">
+      <div class="eyebrow">February 2027 · Date to be confirmed</div>
+      <h2 style="margin-top: 12px">Our Wedding</h2>
+      <div class="rule"></div>
+      <div
+        class="ph"
+        style="height: 340px; max-width: 560px; margin: auto"
+        data-p="COUPLE HERO PHOTO"
+      ></div>
+    </section>
+
+    <section class="rv">
+      <h2>Counting Down</h2>
+      <div class="rule"></div>
+      <div class="cd" id="cd"></div>
+      <p style="margin-top: 16px; opacity: 0.6; font-size: 0.75rem">
+        Counting to the Saturday ceremony · [WEDDING TIME]
+      </p>
+    </section>
+
+    <section class="rv">
+      <h2>Our Story</h2>
+      <div class="rule"></div>
+      <div class="st" id="story"></div>
+    </section>
+
+    <section>
+      <h2 class="rv">Three Days of Celebration</h2>
+      <div class="rule"></div>
+      <div class="days" id="days"></div>
+    </section>
+
+    <section class="rv">
+      <h2>Order of Events</h2>
+      <p class="eyebrow">Saturday</p>
+      <div class="rule"></div>
+      <div class="sch" id="sch"></div>
+    </section>
+
+    <section class="rv">
+      <h2>Moments We Cherish</h2>
+      <div class="rule"></div>
+      <div class="g" id="gal"></div>
+      <p style="margin-top: 14px; font-size: 0.8rem">
+        Add photos to preview:
+        <input
+          type="file"
+          id="pics"
+          accept="image/*"
+          multiple
+          style="width: auto; border: 0; background: none"
+        />
+      </p>
+    </section>
+
+    <section class="rv">
+      <h2>Our Story in Motion</h2>
+      <div class="rule"></div>
+      <div class="ph vid" data-p="WEDDING VIDEO">▶</div>
+    </section>
+
+    <section class="rv">
+      <h2>Our Families</h2>
+      <div class="rule"></div>
+      <div class="fam">
+        <div>
+          <h3>Groom's Family</h3>
+          <p>[GROOM'S FAMILY INFORMATION]</p>
+          <p>[PARENTS' NAMES]</p>
+          <div
+            class="ph"
+            style="height: 140px; margin-top: 12px"
+            data-p="GROOM FAMILY PHOTO"
+          ></div>
+        </div>
+        <div>
+          <h3>Bride's Family</h3>
+          <p>[BRIDE'S FAMILY INFORMATION]</p>
+          <p>[PARENTS' NAMES]</p>
+          <div
+            class="ph"
+            style="height: 140px; margin-top: 12px"
+            data-p="BRIDE FAMILY PHOTO"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rv">
+      <h2>Bridal Party</h2>
+      <div class="rule"></div>
+      <div class="g" id="party"></div>
+    </section>
+
+    <section class="rv">
+      <h2>Dress Code</h2>
+      <div class="rule"></div>
+      <div class="sch" id="dress"></div>
+    </section>
+
+    <section class="rv">
+      <h2>RSVP</h2>
+      <div class="rule"></div>
+      <form id="f">
+        <input id="n" placeholder="Full name" required />
+        <select id="a">
+          <option>Joyfully accept</option>
+          <option>Regretfully decline</option>
+        </select>
+        <select id="w" multiple size="3" title="Days attending">
+          <option selected>Friday</option>
+          <option selected>Saturday</option>
+          <option selected>Sunday</option>
+        </select>
+        <input id="g" type="number" min="1" value="1" placeholder="Guests" />
+        <textarea
+          id="m"
+          rows="3"
+          placeholder="Message to the couple"
+        ></textarea>
+        <button class="cta solid">Send RSVP</button>
+      </form>
+      <div id="thx">
+        <h3>Thank you!</h3>
+        <a class="cta solid" id="wa" target="_blank" rel="noopener"
+          >Send on WhatsApp</a
+        >
+      </div>
+    </section>
+
+    <footer>Kelvin &amp; Abena Pomaa · 2027</footer>
+    <div id="lb"><img alt="" /></div>
+
+    <script>
+      /* ======= EDIT HERE: all wedding details ======= */
+      const W = {
+        whatsapp: "233559083583",
+        countdownTo: "2027-02-27T11:00:00", // PLACEHOLDER Saturday in Feb 2027, change to the real date/time
+        music:
+          "music/Etta%20James%20%E2%80%93%20At%20Last%20%28Single%20Version%29.mp3",
+      };
+      const PHOTOS = {}; // e.g. {'COUPLE HERO PHOTO':'photos/couple.jpg'}  (label -> image link)
+      // Map links: paste real Google Maps links later; until then buttons search the venue name
+      const maps = (q) =>
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(q);
+      const DAYS = [
+        {
+          c: "#b5651d",
+          d: "FRIDAY",
+          t: "Engagement",
+          sb: "Traditional Engagement / Marriage Ceremony",
+          rows: [
+            ["Date", "[FRIDAY DATE]"],
+            ["Time", "[FRIDAY TIME]"],
+            ["Venue", "Jerusalem"],
+            ["Location", "Tarkwa"],
+            ["Dress", "[FRIDAY DRESS CODE]"],
+          ],
+          ph: "ENGAGEMENT PHOTO",
+          map: "",
+          q: "Jerusalem Tarkwa",
+        },
+        {
+          c: "#b08d4a",
+          d: "SATURDAY",
+          t: "Official Wedding",
+          sb: "The main wedding day",
+          main: 1,
+          rows: [
+            ["Date", "[SATURDAY DATE]"],
+            ["Ceremony", "Beautiful Gate Assemblies of God"],
+            ["Location", "Bankyim"],
+            ["Time", "[CEREMONY TIME]"],
+            ["Reception", "[RECEPTION VENUE] · [RECEPTION TIME]"],
+            ["Dress", "[SATURDAY DRESS CODE]"],
+          ],
+          ph: "WEDDING CEREMONY PHOTO",
+          map: "",
+          q: "Beautiful Gate Assemblies of God Bankyim",
+        },
+        {
+          c: "#7a8f6a",
+          d: "SUNDAY",
+          t: "Blessing & Thanksgiving",
+          sb: "Giving thanks for the couple's new journey",
+          rows: [
+            ["Date", "[SUNDAY DATE]"],
+            ["Time", "[SUNDAY TIME]"],
+            ["Venue", "[SUNDAY VENUE]"],
+            ["Location", "[SUNDAY LOCATION]"],
+            ["Dress", "[SUNDAY DRESS CODE]"],
+          ],
+          ph: "SUNDAY PHOTO",
+          map: "",
+          q: "",
+        },
+      ];
+      const STORY = [
+        "HOW WE MET",
+        "THE BEGINNING OF OUR JOURNEY",
+        "A SPECIAL MOMENT",
+        "THE PROPOSAL / ENGAGEMENT STORY",
+        "NOW — OUR WEDDING DAY",
+      ];
+      const SCHEDULE = [
+        "Guest Arrival",
+        "Wedding Ceremony",
+        "Photography",
+        "Reception",
+        "Welcome / Opening",
+        "Speeches",
+        "Cake Cutting",
+        "First Dance",
+        "Dinner",
+        "Dancing / Celebration",
+      ];
+      const PARTY = [
+        "Best Man",
+        "Maid of Honour",
+        "Groomsman",
+        "Bridesmaid",
+        "Other",
+      ];
+      const DRESS = [
+        ["Friday", "[TRADITIONAL / AFRICAN WEAR DETAILS]"],
+        ["Saturday", "[WEDDING ATTIRE DETAILS]"],
+        ["Sunday", "[CHURCH / THANKSGIVING ATTIRE DETAILS]"],
+      ];
+      /* ============================================== */
+
+      const $ = (id) => document.getElementById(id);
+      // Build the page from the data above
+      $("story").innerHTML = STORY.map(
+        (s, i) =>
+          `<div><h3>${s}</h3><p>[Write this part of your story]</p><div class="ph" style="height:90px;margin-top:8px" data-p="STORY PHOTO ${i + 1}"></div></div>`,
+      ).join("");
+      $("days").innerHTML = DAYS.map(
+        (x) => `<div class="day rv ${x.main ? "main" : ""}" style="--c:${x.c}">
+  <div class="eyebrow">${x.d}</div><h3>${x.t}</h3><p class="sb">${x.sb}</p>
+  <div class="ph" data-p="${x.ph}"></div>
+  <dl>${x.rows.map((r) => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>
+  ${x.q ? `<a class="cta small" target="_blank" rel="noopener" href="${x.map || maps(x.q)}">Get Directions</a>` : ""}</div>`,
+      ).join("");
+      $("sch").innerHTML = SCHEDULE.map(
+        (s) => `<div><b>[TIME]</b><span>${s}</span></div>`,
+      ).join("");
+      $("dress").innerHTML = DRESS.map(
+        (s) => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`,
+      ).join("");
+      $("gal").innerHTML = Array.from(
+        { length: 8 },
+        (_, i) =>
+          `<div class="ph ${i % 5 == 4 ? "w" : ""}" data-p="PHOTO 0${i + 1}"></div>`,
+      ).join("");
+      $("party").innerHTML = PARTY.map(
+        (p) =>
+          `<div class="card"><div class="ph" data-p="PHOTO"></div><b>[NAME]</b>${p}</div>`,
+      ).join("");
+
+      // Fill placeholders: show the real photo if one is set in PHOTOS, else the label
+      document.querySelectorAll(".ph").forEach((el) => {
+        const k = el.dataset.p,
+          u = PHOTOS[k];
+        if (u) el.innerHTML = `<img src="${u}" alt="${k}">`;
+        else if (k && !el.textContent) el.textContent = `[${k}]`;
+      });
+
+      // Lightbox: tap any photo to view larger
+      document.addEventListener("click", (e) => {
+        const img = e.target.closest(".ph img");
+        if (img) {
+          $("lb").querySelector("img").src = img.src;
+          $("lb").style.display = "flex";
+        } else if (e.target.closest("#lb")) $("lb").style.display = "none";
+      });
+      // Add photos into the gallery for this visit
+      $("pics").onchange = (e) =>
+        [...e.target.files].forEach((f) => {
+          const d = document.createElement("div");
+          d.className = "ph";
+          d.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="">`;
+          $("gal").prepend(d);
+        });
+
+      // Countdown (updates every second)
+      const T = new Date(W.countdownTo);
+      function tick() {
+        let d = T - new Date();
+        if (d < 0) {
+          $("cd").innerHTML = "<h3>Today we celebrate! 🎉</h3>";
+          return;
+        }
+        $("cd").innerHTML = [
+          ["Days", 864e5],
+          ["Hours", 36e5],
+          ["Minutes", 6e4],
+          ["Seconds", 1e3],
+        ]
+          .map(([n, ms]) => {
+            const x = Math.floor(d / ms);
+            d -= x * ms;
+            return `<div><b>${String(x).padStart(2, "0")}</b><span>${n}</span></div>`;
+          })
+          .join("");
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // Enter screen: floating gold sparkles + enter button
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement("span");
+        p.className = "pt";
+        p.textContent = "✦";
+        p.style.cssText = `left:${Math.random() * 100}%;font-size:${8 + Math.random() * 14}px;animation-duration:${8 + Math.random() * 10}s;animation-delay:${-Math.random() * 12}s`;
+        $("enter").appendChild(p);
+      }
+      $("go").onclick = () => {
+        $("enter").classList.add("gone");
+        if (aud) aud.play().catch(() => {});
+      };
+
+      // Music: use the uploaded local track and start it automatically when the page loads
+      let aud = null;
+      if (W.music) {
+        aud = new Audio(W.music);
+        aud.loop = true;
+        aud.volume = 0.7;
+        aud.autoplay = true;
+        $("mus").style.display = "block";
+
+        const startMusic = () => aud && aud.play().catch(() => {});
+
+        startMusic();
+        setTimeout(startMusic, 800);
+
+        $("mus").onclick = () => {
+          if (aud.paused) startMusic();
+          else aud.pause();
+        };
+      }
+
+      // Sparkles that burst around the ring once it sits on her finger
+      for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2,
+          r = 40 + Math.random() * 30;
+        const t = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text",
+        );
+        t.textContent = "✦";
+        t.setAttribute("x", 272);
+        t.setAttribute("y", 228);
+        t.style.setProperty("--dx", Math.cos(a) * r + "px");
+        t.style.setProperty("--dy", Math.sin(a) * r + "px");
+        $("spk").appendChild(t);
+      }
+      // Give key sections an id so the top menu can jump to them
+      document.querySelectorAll("section h2").forEach((h) => {
+        const id = {
+          "Our Story": "s-story",
+          "Three Days of Celebration": "s-days",
+          "Order of Events": "s-sch",
+          "Moments We Cherish": "s-gal",
+          RSVP: "s-rsvp",
+        }[h.textContent.trim()];
+        if (id) h.closest("section").id = id;
+      });
+      // Thin gold progress bar showing how far down the page you are
+      addEventListener(
+        "scroll",
+        () => {
+          const d = document.documentElement;
+          $("bar").style.width =
+            (scrollY / (d.scrollHeight - innerHeight)) * 100 + "%";
+        },
+        { passive: true },
+      );
+
+      // Scroll-reveal
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+
+      // RSVP: opens a pre-filled WhatsApp message
+      $("f").onsubmit = (e) => {
+        e.preventDefault();
+        const days = [...$("w").selectedOptions].map((o) => o.value).join(", ");
+        const t = `Hello! RSVP for Kelvin & Abena Pomaa's wedding.\nName: ${$("n").value}\nReply: ${$("a").value}\nDays: ${days}\nGuests: ${$("g").value}\nMessage: ${$("m").value}`;
+        $("wa").href =
+          `https://wa.me/${W.whatsapp}?text=${encodeURIComponent(t)}`;
+        $("f").style.display = "none";
+        $("thx").style.display = "block";
+      };
+    </script>
+  </body>
+</html>
